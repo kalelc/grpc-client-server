@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "./proto";
+
+service userService {
+	rpc GetUser (Filter) returns (Message) {}
+	rpc CreateUser (User) returns (Message) {}
+}
+
+message Filter {
+	string Identifier = 1;
+}
+
+message User {
+	string Identifier = 1 [json_name="identifier"];
+	string Name = 2 [json_name="name"];
+	string Email = 3 [json_name="email"];
+}
+
+message Message {
+	User User = 1 ;
+	string Response = 2 ;
+}
